@@ -1,1 +1,1 @@
-This is a funny coach web frontend.
+This is a funny interface to generate passwords.

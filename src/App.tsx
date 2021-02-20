@@ -1,4 +1,5 @@
 import React from 'react'
+import GithubCorner from 'react-github-corner'
 
 /**
  * Components.
@@ -17,6 +18,10 @@ const App = () => (
       <GeneratePasswordForm />
     </FullPage>
 
+    <GithubCorner
+      bannerColor="#ed64a6"
+      href="https://github.com/robertoumbelino/generate-password"
+    />
     <GlobalStyles />
   </>
 )
