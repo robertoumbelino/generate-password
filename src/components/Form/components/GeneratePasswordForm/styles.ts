@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Copy } from 'styled-icons/fa-solid'
 import { PlayFill, GearFill } from 'styled-icons/bootstrap'
 
 export const Container = styled.div`
@@ -34,6 +35,12 @@ export const Title = styled.h1`
   svg {
     margin-right: 10px;
   }
+`
+
+export const PasswordContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `
 
 export const Password = styled.p`
@@ -83,6 +90,7 @@ export const InputContainer = styled.div`
 export const Button = styled.button`
   width: 80px;
   height: 80px;
+  outline: none;
   margin-top: 20px;
 
   background-color: #ed64a6;
@@ -105,18 +113,6 @@ export const Button = styled.button`
   & > svg {
     margin-left: 5px;
   }
-`
-
-export const PlayIcon = styled(PlayFill)`
-  width: 45px;
-  height: 45px;
-  color: #e2e8f0;
-`
-
-export const GearIcon = styled(GearFill)`
-  width: 35px;
-  height: 35px;
-  color: #e2e8f0;
 `
 
 export const SwitchContainer = styled.div`
@@ -211,4 +207,44 @@ export const RangeContainer = styled.div`
     background: #fff;
     border-radius: 50%;
   }
+`
+
+export const ClipboardButton = styled.button`
+  width: 50px;
+  height: 50px;
+  outline: none;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ed64a6;
+  border-radius: 50%;
+
+  &:hover {
+    opacity: 0.85;
+  }
+`
+
+/**
+ * Icons.
+ */
+export const PlayIcon = styled(PlayFill)`
+  width: 45px;
+  height: 45px;
+  color: #e2e8f0;
+`
+
+export const GearIcon = styled(GearFill)`
+  width: 35px;
+  height: 35px;
+  color: #e2e8f0;
+`
+
+export const CopyIcon = styled(Copy)`
+  width: 25px;
+  height: 25px;
+  color: #e2e8f0;
 `

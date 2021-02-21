@@ -15,13 +15,16 @@ import {
   Title,
   Button,
   Fields,
+  CopyIcon,
   GearIcon,
   Password,
   PlayIcon,
   Container,
   InputContainer,
   RangeContainer,
-  SwitchContainer
+  ClipboardButton,
+  SwitchContainer,
+  PasswordContainer
 } from './styles'
 
 /**
@@ -64,6 +67,13 @@ const GeneratePasswordForm = () => {
     const randomPassword = generatePassword()
 
     setPassword(randomPassword)
+  }
+
+  /**
+   * Copy password to clipboard.
+   */
+  const handleClipboard = () => {
+    navigator.clipboard.writeText(password)
   }
 
   return (
@@ -169,7 +179,13 @@ const GeneratePasswordForm = () => {
         </Fields>
       </Form>
 
-      <Password>{password}</Password>
+      <PasswordContainer>
+        <Password>{password}</Password>
+
+        <ClipboardButton onClick={handleClipboard}>
+          <CopyIcon />
+        </ClipboardButton>
+      </PasswordContainer>
     </Container>
   )
 }
