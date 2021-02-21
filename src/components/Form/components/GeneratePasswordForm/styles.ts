@@ -214,6 +214,8 @@ export const ClipboardButton = styled.button`
   height: 50px;
   outline: none;
 
+  margin-top: 20px;
+
   cursor: pointer;
 
   display: flex;
