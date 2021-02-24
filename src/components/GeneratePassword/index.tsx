@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 /**
  * Components.
  */
 import GeneratePasswordForm from '../Form/components/GeneratePasswordForm'
+
+/**
+ * Hooks.
+ */
+import { useCopyClipboard } from './hooks/useCopyClipboard'
+import { useFetchPassword } from './hooks/useFetchPassword'
 
 /**
  * Styles.
@@ -23,16 +29,10 @@ import {
  */
 const GeneratePassword = () => {
   /**
-   * States.
+   * Hooks.
    */
-  const [password, setPassword] = useState('')
-
-  /**
-   * Copy password to clipboard.
-   */
-  const handleClipboard = () => {
-    navigator.clipboard.writeText(password)
-  }
+  const { handleClipboard } = useCopyClipboard()
+  const { password, setPassword } = useFetchPassword()
 
   return (
     <Container>
@@ -46,7 +46,7 @@ const GeneratePassword = () => {
       <PasswordContainer>
         <Password>{password}</Password>
 
-        <ClipboardButton onClick={handleClipboard}>
+        <ClipboardButton onClick={() => handleClipboard(password)}>
           <CopyIcon />
         </ClipboardButton>
       </PasswordContainer>
