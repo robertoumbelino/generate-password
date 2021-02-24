@@ -1,45 +1,19 @@
 import { useState } from 'react'
 
 /**
- * When don't have functions to execute.
+ * Setup.
  */
-const emptyCharacter = () => {
-  const monkeys = ['🙈', '🙉', '🙊']
-  return monkeys[Math.floor(Math.random() * monkeys.length)]
-}
+const empty = ''
+const monkeys = ['🙈', '🙉', '🙊']
+const letters = 'abcdefghijqklmnopqrstuvwxyz'
+const numbers = '0123456789'
+const symbols = '~!@#$%^&*()_+{}":?><;.,'
 
 /**
- * maximum => maximum number from ASCII.
- * start => Character start from ASCII.
+ * Get a random value from list.
  */
-const generateCharacter = (maximum: number, start: number) =>
-  String.fromCharCode(Math.floor(Math.random() * maximum) + start)
-
-/**
- * 26 => 26 alphabet letters.
- * 65 => 65 is the start from upper letters.
- */
-const generateUpper = () => generateCharacter(26, 65)
-
-/**
- * 26 => 26 alphabet letters.
- * 97 => 97 is the start from lower letters.
- */
-const generateLower = () => generateCharacter(26, 97)
-
-/**
- * 10 => Maximum numbers.
- * 48 => 48 is the start from numbers.
- */
-const generateNumber = () => generateCharacter(10, 48)
-
-/**
- * Get a random symbol.
- */
-const generateSymbol = () => {
-  const symbols = '~!@#$%^&*()_+{}":?><;.,'
-  return symbols[Math.floor(Math.random() * symbols.length)]
-}
+const randomize = (list: string | string[]) =>
+  list[Math.floor(Math.random() * list.length)]
 
 /**
  * Hook.
@@ -58,27 +32,29 @@ export const useGeneratePassword = () => {
    * Generate a random password.
    */
   const generatePassword = () => {
-    const functions = [
-      isLower ? generateLower : undefined,
-      isUpper ? generateUpper : undefined,
-      isNumber ? generateNumber : undefined,
-      isSymbol ? generateSymbol : undefined
-    ]
+    /**
+     * List of all possible variations.
+     */
+    const variations = [
+      isLower ? letters : empty,
+      isUpper ? letters.toUpperCase() : empty,
+      isNumber ? numbers : empty,
+      isSymbol ? symbols : empty
+    ].filter(characters => characters)
 
     /**
-     * Get only valid functions.
+     * Randomize variation and character.
      */
-    const validFunctions = functions.filter(fn => fn) as (() => string)[]
+    const randomizeCharacter = () => {
+      /**
+       * Characters to randomize.
+       */
+      const characters = randomize(variations)
 
-    return new Array(length)
-      .fill('')
-      .map(_ => {
-        const fn =
-          validFunctions[Math.floor(Math.random() * validFunctions.length)] ||
-          emptyCharacter
-        return fn()
-      })
-      .join('')
+      return randomize(characters || monkeys)
+    }
+
+    return new Array(length).fill('').map(randomizeCharacter).join('')
   }
 
   return {
