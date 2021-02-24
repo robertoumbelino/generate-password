@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, Dispatch, SetStateAction, useEffect } from 'react'
 
 /**
  * Hooks.
@@ -12,25 +12,25 @@ import {
   Form,
   Field,
   Label,
-  Title,
   Button,
   Fields,
-  CopyIcon,
-  GearIcon,
-  Password,
   PlayIcon,
-  Container,
   InputContainer,
   RangeContainer,
-  ClipboardButton,
-  SwitchContainer,
-  PasswordContainer
+  SwitchContainer
 } from './styles'
+
+/**
+ * Component props.
+ */
+type Props = {
+  onGeneratePassword: Dispatch<SetStateAction<string>>
+}
 
 /**
  * Component.
  */
-const GeneratePasswordForm = () => {
+const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
   /**
    * Hooks.
    */
@@ -54,9 +54,13 @@ const GeneratePasswordForm = () => {
   } = useGeneratePassword()
 
   /**
-   * States.
+   * Set a random password.
    */
-  const [password, setPassword] = useState(generatePassword)
+  const setRandomPassword = () => {
+    const randomPassword = generatePassword()
+
+    onGeneratePassword(randomPassword)
+  }
 
   /**
    * Generate random password.
@@ -64,129 +68,111 @@ const GeneratePasswordForm = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    const randomPassword = generatePassword()
-
-    setPassword(randomPassword)
+    setRandomPassword()
   }
 
   /**
-   * Copy password to clipboard.
+   * On start.
    */
-  const handleClipboard = () => {
-    navigator.clipboard.writeText(password)
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(setRandomPassword, [])
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
-        <Title>
-          <GearIcon />
-          Gerador de senha
-        </Title>
+    <Form onSubmit={handleSubmit}>
+      <Fields>
+        <Field>
+          <Label>Caracteres: {length}</Label>
 
-        <Fields>
-          <Field>
-            <Label>Caracteres: {length}</Label>
+          <InputContainer>
+            <Label>4</Label>
 
-            <InputContainer>
-              <Label>4</Label>
+            <RangeContainer>
+              <input
+                type="range"
+                min={4}
+                max={32}
+                value={length}
+                onChange={e => setLength(+e.target.value)}
+              />
+            </RangeContainer>
 
-              <RangeContainer>
-                <input
-                  type="range"
-                  min={4}
-                  max={32}
-                  value={length}
-                  onChange={e => setLength(+e.target.value)}
-                />
-              </RangeContainer>
+            <Label>32</Label>
+          </InputContainer>
+        </Field>
+      </Fields>
 
-              <Label>32</Label>
-            </InputContainer>
-          </Field>
-        </Fields>
+      <Fields>
+        <Field>
+          <Label>Incluir letras minúsculas</Label>
 
-        <Fields>
-          <Field>
-            <Label>Incluir letras minúsculas</Label>
+          <InputContainer>
+            <SwitchContainer>
+              <input
+                id="is-lower"
+                type="checkbox"
+                checked={isLower}
+                onChange={e => setIsLower(e.target.checked)}
+              />
+              <label htmlFor="is-lower"></label>
+            </SwitchContainer>
+          </InputContainer>
+        </Field>
 
-            <InputContainer>
-              <SwitchContainer>
-                <input
-                  id="is-lower"
-                  type="checkbox"
-                  checked={isLower}
-                  onChange={e => setIsLower(e.target.checked)}
-                />
-                <label htmlFor="is-lower"></label>
-              </SwitchContainer>
-            </InputContainer>
-          </Field>
+        <Field>
+          <Label>Incluir letras maiúsculas</Label>
 
-          <Field>
-            <Label>Incluir letras maiúsculas</Label>
+          <InputContainer>
+            <SwitchContainer>
+              <input
+                id="is-upper"
+                type="checkbox"
+                checked={isUpper}
+                onChange={e => setIsUpper(e.target.checked)}
+              />
+              <label htmlFor="is-upper"></label>
+            </SwitchContainer>
+          </InputContainer>
+        </Field>
 
-            <InputContainer>
-              <SwitchContainer>
-                <input
-                  id="is-upper"
-                  type="checkbox"
-                  checked={isUpper}
-                  onChange={e => setIsUpper(e.target.checked)}
-                />
-                <label htmlFor="is-upper"></label>
-              </SwitchContainer>
-            </InputContainer>
-          </Field>
+        <Field>
+          <Label>Incluir números</Label>
 
-          <Field>
-            <Label>Incluir números</Label>
+          <InputContainer>
+            <SwitchContainer>
+              <input
+                id="is-number"
+                type="checkbox"
+                checked={isNumber}
+                onChange={e => setIsNumber(e.target.checked)}
+              />
+              <label htmlFor="is-number"></label>
+            </SwitchContainer>
+          </InputContainer>
+        </Field>
 
-            <InputContainer>
-              <SwitchContainer>
-                <input
-                  id="is-number"
-                  type="checkbox"
-                  checked={isNumber}
-                  onChange={e => setIsNumber(e.target.checked)}
-                />
-                <label htmlFor="is-number"></label>
-              </SwitchContainer>
-            </InputContainer>
-          </Field>
+        <Field>
+          <Label>Incluir símbolos</Label>
 
-          <Field>
-            <Label>Incluir símbolos</Label>
+          <InputContainer>
+            <SwitchContainer>
+              <input
+                id="is-symbol"
+                type="checkbox"
+                checked={isSymbol}
+                onChange={e => setIsSynbol(e.target.checked)}
+              />
+              <label htmlFor="is-symbol"></label>
+            </SwitchContainer>
+          </InputContainer>
+        </Field>
+      </Fields>
 
-            <InputContainer>
-              <SwitchContainer>
-                <input
-                  id="is-symbol"
-                  type="checkbox"
-                  checked={isSymbol}
-                  onChange={e => setIsSynbol(e.target.checked)}
-                />
-                <label htmlFor="is-symbol"></label>
-              </SwitchContainer>
-            </InputContainer>
-          </Field>
-        </Fields>
-
-        <Fields>
-          <Button type="submit">
-            <PlayIcon />
-          </Button>
-        </Fields>
-      </Form>
-
-      <PasswordContainer>
-        <Password>{password}</Password>
-
-        <ClipboardButton onClick={handleClipboard}>
-          <CopyIcon />
-        </ClipboardButton>
-      </PasswordContainer>
-    </Container>
+      <Fields>
+        <Button type="submit">
+          <PlayIcon />
+        </Button>
+      </Fields>
+    </Form>
   )
 }
 
