@@ -3,7 +3,6 @@ import { useState } from 'react'
 /**
  * Setup.
  */
-const empty = ''
 const monkeys = ['🙈', '🙉', '🙊']
 const letters = 'abcdefghijqklmnopqrstuvwxyz'
 const numbers = '0123456789'
@@ -35,12 +34,19 @@ export const useGeneratePassword = () => {
     /**
      * List of all possible variations.
      */
-    const variations = [
-      isLower ? letters : empty,
-      isUpper ? letters.toUpperCase() : empty,
-      isNumber ? numbers : empty,
-      isSymbol ? symbols : empty
-    ].filter(characters => characters)
+    const possibleVariations = [
+      { isEnabled: isLower, characters: letters },
+      { isEnabled: isUpper, characters: letters.toUpperCase() },
+      { isEnabled: isNumber, characters: numbers },
+      { isEnabled: isSymbol, characters: symbols }
+    ]
+
+    /**
+     * List of all enabled variations.
+     */
+    const variations = possibleVariations
+      .filter(({ isEnabled }) => isEnabled)
+      .map(({ characters }) => characters)
 
     /**
      * Randomize variation and character.
