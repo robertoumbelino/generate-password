@@ -13,11 +13,7 @@
 
 Esse projeto foi realizado no [Challenge da FW7](https://github.com/fw7-solucoes/challenges/tree/master/challenge-9), um desafio com o propósito de estudo e gerar engajamento com a comunidade de desenvolvimento.
 
-<br />
-
 ---
-
-<br />
 
 ## 📕 Sobre
 
@@ -32,7 +28,7 @@ Nesse desafio o objetivo era criar uma interface onde o usuário possa criar sen
 - Deve ser possível permitir ou não símbolos. _(!, @, #...)_
 - Deve ser possível gerar uma senha aleatória.
 
-<br />
+---
 
 🎵 Música que escutei enquando fiz o **Challenge**: 😜 [Party Mix - Remixes](https://www.youtube.com/watch?v=W9iUh23Xrsg)
 
