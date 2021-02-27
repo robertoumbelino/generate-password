@@ -3,7 +3,7 @@ import React, { FormEvent, Dispatch, SetStateAction, useEffect } from 'react'
 /**
  * Hooks.
  */
-import { useGeneratePassword } from './hooks/useGeneratePassword'
+import { useGeneratePassword } from '../../hooks/useGeneratePassword'
 
 /**
  * Styles.
@@ -30,7 +30,7 @@ type Props = {
 /**
  * Component.
  */
-const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
+export const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
   /**
    * Hooks.
    */
@@ -175,5 +175,3 @@ const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
     </Form>
   )
 }
-
-export default GeneratePasswordForm

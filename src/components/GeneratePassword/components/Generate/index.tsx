@@ -3,13 +3,13 @@ import React from 'react'
 /**
  * Components.
  */
-import GeneratePasswordForm from '../Form/components/GeneratePasswordForm'
+import { GeneratePasswordForm } from '../Form'
 
 /**
  * Hooks.
  */
-import { useCopyClipboard } from './hooks/useCopyClipboard'
-import { useFetchPassword } from './hooks/useFetchPassword'
+import { useCopyClipboard } from '../../hooks/useCopyClipboard'
+import { useFetchPassword } from '../../hooks/useFetchPassword'
 
 /**
  * Styles.
@@ -27,7 +27,7 @@ import {
 /**
  * Component.
  */
-const GeneratePassword = () => {
+export const GeneratePassword = () => {
   /**
    * Hooks.
    */
@@ -53,5 +53,3 @@ const GeneratePassword = () => {
     </Container>
   )
 }
-
-export default GeneratePassword

@@ -4,15 +4,15 @@ import GithubCorner from 'react-github-corner'
 /**
  * Components.
  */
-import FullPage from './components/Page/components/FullPage'
-import GeneratePassword from './components/GeneratePassword'
+import { FullPage } from './components/Page/components/FullPage'
+import { GeneratePassword } from './components/GeneratePassword/components/Generate'
 
 /**
  * Styles.
  */
-import GlobalStyles from './styles/GlobalStyles'
+import { GlobalStyles } from './styles/GlobalStyles'
 
-const App = () => (
+export const App = () => (
   <>
     <FullPage backgroundColor="#141821">
       <GeneratePassword />
@@ -25,5 +25,3 @@ const App = () => (
     <GlobalStyles />
   </>
 )
-
-export default App

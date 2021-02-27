@@ -16,8 +16,6 @@ export type Props = {
 /**
  * Component.
  */
-const FullPage = ({ children, backgroundColor }: Props) => (
+export const FullPage = ({ children, backgroundColor }: Props) => (
   <Container backgroundColor={backgroundColor}>{children}</Container>
 )
-
-export default FullPage
