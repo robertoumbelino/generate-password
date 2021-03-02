@@ -9,12 +9,12 @@ import { useGeneratePassword } from '../../hooks/useGeneratePassword'
  * Styles.
  */
 import {
-  Form,
   Field,
   Label,
   Button,
   Fields,
   PlayIcon,
+  FormContainer,
   InputContainer,
   RangeContainer,
   SwitchContainer
@@ -30,7 +30,7 @@ type Props = {
 /**
  * Component.
  */
-export const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
+export const Form = ({ onGeneratePassword }: Props) => {
   /**
    * Hooks.
    */
@@ -78,7 +78,7 @@ export const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
   useEffect(setRandomPassword, [])
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <FormContainer onSubmit={handleSubmit}>
       <Fields>
         <Field>
           <Label>Caracteres: {length}</Label>
@@ -172,6 +172,6 @@ export const GeneratePasswordForm = ({ onGeneratePassword }: Props) => {
           <PlayIcon />
         </Button>
       </Fields>
-    </Form>
+    </FormContainer>
   )
 }

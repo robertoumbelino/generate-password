@@ -1,11 +1,9 @@
 import React from 'react'
-import GithubCorner from 'react-github-corner'
 
 /**
- * Components.
+ * Pages.
  */
-import { FullPage } from './components/Page/components/FullPage'
-import { GeneratePassword } from './components/GeneratePassword/components/Generate'
+import { GeneratePassword } from './pages/GeneratePassword'
 
 /**
  * Styles.
@@ -14,14 +12,8 @@ import { GlobalStyles } from './styles/GlobalStyles'
 
 export const App = () => (
   <>
-    <FullPage backgroundColor="#141821">
-      <GeneratePassword />
-    </FullPage>
+    <GeneratePassword />
 
-    <GithubCorner
-      bannerColor="#ed64a6"
-      href="https://github.com/robertoumbelino/generate-password"
-    />
     <GlobalStyles />
   </>
 )

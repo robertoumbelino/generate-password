@@ -3,7 +3,7 @@ import React from 'react'
 /**
  * Components.
  */
-import { GeneratePasswordForm } from '../Form'
+import { Form } from '../Form'
 
 /**
  * Hooks.
@@ -27,7 +27,7 @@ import {
 /**
  * Component.
  */
-export const GeneratePassword = () => {
+export const Generate = () => {
   /**
    * Hooks.
    */
@@ -41,7 +41,7 @@ export const GeneratePassword = () => {
         Gerador de senha
       </Title>
 
-      <GeneratePasswordForm onGeneratePassword={setPassword} />
+      <Form onGeneratePassword={setPassword} />
 
       <PasswordContainer>
         <Password>{password}</Password>

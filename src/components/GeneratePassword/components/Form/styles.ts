@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { PlayFill } from 'styled-icons/bootstrap'
 
-export const Form = styled.form`
+export const FormContainer = styled.form`
   width: 95%;
 
   border-radius: 10px;
